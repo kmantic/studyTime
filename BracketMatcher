@@ -1,0 +1,70 @@
+/*
+ * From coderpaid.io 
+ */
+
+
+import java.io.*;
+import java.util.*;
+
+class Solution {
+  
+    public static void main(String[] args) {
+
+     String[] brackets ={"[]]","{[()]}","{[(])}","{{[[(())]]}}",
+                         "{{([])}}","{{)[](}}","{(([])[])[]}",
+                        "{(([])[])[]]}","{(([])[])[]}[]"} ;   
+                          
+      
+     // String[] brackets = {"{[()]}"}; 
+      
+      Solution s = new Solution(); 
+      for (String str : brackets) {
+      
+        System.out.println("INPUT: " + str); 
+        System.out.println("OUTPUT: " + s.run(str) + "\n =======\n"); 
+        
+      }
+
+    }//main 
+  
+   private boolean run(String s){
+
+     s = s.replaceAll("\\w|\\s","");  
+      if (s.length()%2 == 1) 
+          return false; 
+
+     for (int a = 0; a < s.length()/2; a++) {
+
+       
+       int b = s.length()-a-1; 
+       System.out.println("a: " + s.charAt(a) + " b: " + s.charAt(b)); 
+       
+       if (s.charAt(a) != '{' && s.charAt(a) != '[' && s.charAt(a) != '(') {
+         System.out.println("1."); 
+         return false; 
+       }
+       
+       if (s.charAt(a) == '{' && s.charAt(b) != '}') {
+         System.out.println("2."); 
+         return false; 
+       }
+          
+        if (s.charAt(a) == '[' && s.charAt(b) != ']') {
+         System.out.println("3."); 
+         return false; 
+       }
+       
+       if (s.charAt(a) == '(' && s.charAt(b) != ')') {
+         System.out.println("4."); 
+         return false; 
+       }
+       
+
+     }
+     
+     System.out.println("5."); 
+     return true ; 
+    }
+  
+}//end class Solution 
+
